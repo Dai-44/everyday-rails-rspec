@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-    # 有効なファクトリを持つこと
-    it "has a valid factory" do
-      expect(FactoryBot.build(:user)).to be_valid
-    end
+  # 有効なファクトリを持つこと
+  it "has a valid factory" do
+    expect(FactoryBot.build(:user)).to be_valid
+  end
 
   # 名がなければ無効な状態であること
   it "is invalid without a first name" do
