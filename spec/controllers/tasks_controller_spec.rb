@@ -11,7 +11,7 @@ RSpec.describe TasksController, type: :controller do
     it "responds with JSON formatted output" do
       sign_in @user
       get :show, format: :json,
-           params: { project_id: @project.id, id: @task.id }
+          params: { project_id: @project.id, id: @task.id }
       expect(response.content_type).to include "application/json"
     end
   end
@@ -36,6 +36,7 @@ RSpec.describe TasksController, type: :controller do
 
     it "require authentication" do
       new_task = { name: "New test task" }
+      # Don't sign in this time ...
       expect {
         post :create, format: :json,
              params: { project_id: @project.id, task: new_task }

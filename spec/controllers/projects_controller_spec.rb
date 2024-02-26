@@ -6,13 +6,13 @@ RSpec.describe ProjectsController, type: :controller do
       before do
         @user = FactoryBot.create(:user)  
       end
-  
+
       it "responds successfully" do
         sign_in @user
         get :index
         expect(response).to be_successful
       end
-  
+
       it "returns a 200 response" do
         sign_in @user
         get :index
@@ -104,7 +104,7 @@ RSpec.describe ProjectsController, type: :controller do
         it "adds a project" do
           project_params = FactoryBot.attributes_for(:project)
           sign_in @user
-          expect{
+          expect {
             post :create, params: { project: project_params}
           }.to change(@user.projects, :count).by(1)
         end
@@ -198,13 +198,13 @@ RSpec.describe ProjectsController, type: :controller do
         @user = FactoryBot.create(:user)
         other_user = FactoryBot.create(:user)
         @project = FactoryBot.create(:project, 
-          owner: other_user,
-          name: "Same Old Name")
+                                     owner: other_user,
+                                     name: "Same Old Name")
       end
 
       it "does not update the project" do
         project_params = FactoryBot.attributes_for(:project,
-          name: "New Name")
+                                                   name: "New Name")
         sign_in @user
         patch :update, params: { id: @project.id, project: project_params }
         expect(@project.reload.name).to eq "Same Old Name"
@@ -231,7 +231,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       it "redirects to the sign-in page" do
         project_params = FactoryBot.attributes_for(:project)
-        patch :update, params: { id: @project.id, project: project_params}
+        patch :update, params: { id: @project.id, project: project_params }
         expect(response).to redirect_to "/users/sign_in"
       end
     end
@@ -246,7 +246,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       it "deletes a project" do
         sign_in @user
-        expect{
+        expect {
           delete :destroy, params: { id: @project.id }
         }.to change(@user.projects, :count).by(-1)
       end
@@ -261,7 +261,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       it "does not delete the project" do
         sign_in @user
-        expect{
+        expect {
           delete :destroy, params: { id: @project.id }
         }.to_not change(Project, :count)
       end
@@ -289,7 +289,7 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it "does not delete the project" do
-        expect{
+        expect {
           delete :destroy, params: { id: @project.id }
         }.to_not change(Project, :count)
       end
