@@ -4,7 +4,7 @@ RSpec.describe ProjectsController, type: :controller do
   describe "#index" do
     context "as an authenticated user" do
       before do
-        @user = FactoryBot.create(:user)  
+        @user = FactoryBot.create(:user)
       end
 
       it "responds successfully" do
@@ -105,7 +105,7 @@ RSpec.describe ProjectsController, type: :controller do
           project_params = FactoryBot.attributes_for(:project)
           sign_in @user
           expect {
-            post :create, params: { project: project_params}
+            post :create, params: { project: project_params }
           }.to change(@user.projects, :count).by(1)
         end
       end
@@ -197,7 +197,7 @@ RSpec.describe ProjectsController, type: :controller do
       before do
         @user = FactoryBot.create(:user)
         other_user = FactoryBot.create(:user)
-        @project = FactoryBot.create(:project, 
+        @project = FactoryBot.create(:project,
                                      owner: other_user,
                                      name: "Same Old Name")
       end

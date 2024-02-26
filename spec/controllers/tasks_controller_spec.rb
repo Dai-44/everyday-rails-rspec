@@ -34,7 +34,7 @@ RSpec.describe TasksController, type: :controller do
       }.to change(@project.tasks, :count).by(1)
     end
 
-    it "require authentication" do
+    it "requires authentication" do
       new_task = { name: "New test task" }
       # Don't sign in this time ...
       expect {
