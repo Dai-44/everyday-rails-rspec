@@ -68,7 +68,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 
-  gem "launchy"
+  gem "launchy" # add in chapter 6
   gem "shoulda-matchers"
   gem "vcr"
   gem "webmock"
