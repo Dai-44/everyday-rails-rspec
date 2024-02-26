@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Projects", type: :system do
-  # ユーザーは新しいプロジェクトを作成する
   scenario "user creates a new project" do
     user = FactoryBot.create(:user)
 
@@ -23,7 +22,6 @@ RSpec.describe "Projects", type: :system do
     }.to change(user.projects, :count).by(1)
   end
 
-  # プロジェクトの編集作業
   context "edit a project" do
     before do
       @user = FactoryBot.create(:user)
@@ -36,7 +34,6 @@ RSpec.describe "Projects", type: :system do
       click_button "Log in"
     end
 
-    # ユーザーは自分のプロジェクトを編集できる
     scenario "user edits his project" do
       expect {
         click_link "My Project"
@@ -51,8 +48,7 @@ RSpec.describe "Projects", type: :system do
         expect(page).to have_content "Owner: #{@user.name}"
       }.to_not change(@user.projects, :count)
     end
-  
-    # 空の値で更新することはできない
+
     scenario "user can't edit his project with nil" do
       expect {
         click_link "My Project"
