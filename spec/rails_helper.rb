@@ -63,6 +63,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # コントローラスペックでDeviseのテストヘルパーを使用する
+  # Use Devise helpers in tests
   config.include Devise::Test::ControllerHelpers, type: :controller
 end
