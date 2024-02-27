@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "ProjectsApis", type: :request do
+RSpec.describe "Projects API", type: :request do
   it 'loads a project' do
     user = FactoryBot.create(:user)
     FactoryBot.create(:project, name: "Sample Project")
