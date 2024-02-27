@@ -5,11 +5,7 @@ RSpec.describe Note, type: :model do
   let(:project) { FactoryBot.create(:project, owner: user) }
 
   it "is valid with a user, project, and message" do
-    note = Note.new(
-      message: "This is a sample note.",
-      user: user,
-      project: project,
-      )
+    note = FactoryBot.create(:note)
     expect(note).to be_valid
   end
 
@@ -20,29 +16,13 @@ RSpec.describe Note, type: :model do
   end
 
   describe "search message for a term" do
-    let!(:note1) {
-      FactoryBot.create(:note,
-        project: project,
-        user: user,
-        message: "This is the first note.",
-      )
-    }
-
-    let!(:note2) {
-      FactoryBot.create(:note,
-        project: project,
-        user: user,
-        message: "This is the second note.",
-      )
-    }
-
-    let!(:note3) {
-      FactoryBot.create(:note,
-        project: project,
-        user: user,
-        message: "First, preheat the oven.",
-      )
-    }
+    before do
+      user = FactoryBot.create(:user)
+      project = FactoryBot.create(:project, owner: user)
+      @note1 = FactoryBot.create(:note, message: "This is the first note.", project: project)
+      @note2 = FactoryBot.create(:note, message: "This is the second note.", project: project)
+      @note3 = FactoryBot.create(:note, message: "First, preheat the oven.", project: project)
+    end
 
     context "when a match is found" do
       it "returns notes that match the search term" do
