@@ -1,14 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "ProjectsApis", type: :request do
-  # 1件のプロジェクトを読み出すこと
   it 'loads a project' do
     user = FactoryBot.create(:user)
-    FactoryBot.create(:project,
-      name: "Sample Project")
-    FactoryBot.create(:project,
-      name: "Second Sample Project",
-      owner: user)
+    FactoryBot.create(:project, name: "Sample Project")
+    FactoryBot.create(:project, name: "Second Sample Project", owner: user)
 
     get api_projects_path, params: {
       user_email: user.email,
@@ -28,11 +24,13 @@ RSpec.describe "ProjectsApis", type: :request do
     expect(response).to have_http_status(:success)
     json = JSON.parse(response.body)
     expect(json["name"]).to eq "Second Sample Project"
+    # Etc.
   end
 
-  # プロジェクトを作成できること
   it 'creates a project' do
     user = FactoryBot.create(:user)
+    FactoryBot.create(:project, name: "Sample Project")
+    FactoryBot.create(:project, name: "Second Sample Project", owner: user)
 
     project_attributes = FactoryBot.attributes_for(:project)
 
