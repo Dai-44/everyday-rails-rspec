@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Note, type: :model do
-  let(:user) { FactoryBot.create(:user) }
-  let(:project) { FactoryBot.create(:project, owner: user) }
-
   it "is valid with a user, project, and message" do
     note = FactoryBot.create(:note)
     expect(note).to be_valid
