@@ -46,13 +46,14 @@ RSpec.describe Note, type: :model do
 
     context "when a match is found" do
       it "returns notes that match the search term" do
-        expect(Note.search("first")).to include(@note1, @note3)
+        expect(Note.search("first")).to include(note1, note3)
       end
     end
 
     context "when no match is found" do
       it "returns an empty collection" do
         expect(Note.search("message")).to be_empty
+        expect(Note.count).to eq 3
       end
     end
   end
